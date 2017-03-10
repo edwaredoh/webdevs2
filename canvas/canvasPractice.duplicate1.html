@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <style>
+            canvas {
+              border:1px solid #d3d3d3;background-color:white;
+            }
+            #theone {display: none;}
+        </style>
+    </head>
+    <body>
+        <canvas id="practice" width="1000" height="1000" style="border:5px solid #ff0000">Your browser does not support the canvas element</canvas>
+        <script>
+            //create a reference to the canvas element
+            var canvas = document.getElementById("practice");
+            
+            //create a reference to the drawing object
+            var ctx = canvas.getContext("2d");
+            
+            var circleX = 0;
+            var circleSpeed = 3;
+            var direction = 1;
+            
+            function draw() {
+                
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                
+                ctx.beginPath();
+                ctx.arc(circleX,75,20,0,2*Math.PI);
+                ctx.fill();
+                
+                if (circleX >= (canvas.width - 20)) {
+                    direction = -1;
+                    circleSpeed = circleSpeed*1.01
+                }
+                else if (circleX <= 20) {
+                    direction = 1;
+                }
+                //increases speed increment
+                circleX = circleX + (circleSpeed*direction) ;
+                
+                window.requestAnimationFrame(draw)
+            }
+            
+            window.requestAnimationFrame(draw);
+           </script>
+    </body>
+</html>

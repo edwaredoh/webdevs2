@@ -1,0 +1,76 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="index.1.css">
+  <meta charset="utf-8">
+  <title>jQuery.parseXML demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#2F3BA2">
+</head>
+<body>
+  <h1>Track a bus near Lane!</h1>
+  <button type="button" id="btn1">See the buses!</button>
+  <div id=49Northbound></div>
+  <div id=49Southbound></div>
+  <div id=152Eastbound></div>
+  <div id=152Westbound></div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+      
+        $(function() {
+          
+          $("div").hide();
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+         /* page 27 0f the datapoint pdf*/
+          var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions?key=62ia5Gg8QemxjhRbTZvnKcyrR&rt=49,152&stpid=8417,8195,12526&format=json";
+          
+          $("#btn1").on("click", function(){
+          
+          $("div").html("");
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "62ia5Gg8QemxjhRbTZvnKcyrR",
+                      "format":"json"}
+            })
+            
+            .done (function (data) {
+              console.log(data);
+              
+              $("#49Northbound").prepend("<h1 id=\"bsrts\">Bus Routes</h1>");
+             
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $("#" + v.rt + v.rtdir).append("<p>" 
+                  + "Route #" 
+                  + v.rt 
+                  + ", "
+                  + v.stpnm
+                  + ", "
+                  + v.rtdir 
+                  + "<br>" 
+                  + "Predicted minutes until arrival: " 
+                  + v.prdctdn
+                  + "</p>");
+                  
+              $('div').show()
+                
+              });
+
+            });
+        
+          });
+        
+        });
+            
+  
+</script>
+ 
+</body>
+</html>

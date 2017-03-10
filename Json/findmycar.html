@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title> towed vehicles </title>
+        <style>
+            h2 {
+                
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Wheres my Car?</h2>
+       
+        <div id="form">
+            License plate: <input id=input type="text" placeholder="Enter your License Plate">
+            <button type="button" id="btnSearch" disabled> Find My Car</button>
+        </div>
+       
+        <div id="results">
+        </div>
+       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+        
+            
+        
+            var inspectionsBaseUrl='https://data.cityofchicago.org/resource/rp42-fxjt.json';
+            
+            var filter= '?plate=';
+            
+            console.log(filter);
+            
+            var url= inspectionsBaseUrl + filter;
+        
+           console.log(url);
+           
+           btnSearch.onclick= function(){
+               
+               filter= filter + $('#input').val();
+               
+                var url= inspectionsBaseUrl + filter;
+               console.log(url);
+               
+               $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(url)
+                .done (function (data) {
+                    
+                    
+                    console.log(data);
+                    // TODO:  add script to add data to the DOM
+
+                    //loop through the records
+                    $.each (data , 
+                    function (index, value) {
+                        //append content to the body
+                        var html = "<div>"
+                            + "<p>"
+                            + "Maker: "
+                            + value.make
+                            + "<br>"
+                            + "Date towed: "
+                            + value.tow_date
+                            + "<br>"
+                            + "Facility contact: "
+                            + value.tow_facility_phone
+                            + "<br>"
+                            + "Car plate: "
+                            + value.plate
+                            + "<hr>"
+                            + "</p>"
+                            + "</div>";
+
+                        $("body").append(html);
+                                            }
+                            );
+                
+                                        })
+                    );
+               
+                                                    };
+           
+           $(
+               $("input").change( function() {
+                    document.getElementById("btnSearch").disabled =false;
+                    
+               })
+                   
+        
+               );
+           
+           
+           
+        </script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+    <body>
+        <canvas id="myCanvas" width="400" height="200" style="border:1px solid #d3d3d3;">
+        Stuff.
+        </canvas>
+        <script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.beginPath();
+ctx.arc(150,100,85,0,2*Math.PI);
+ctx.strokeStyle= "#0E3386";
+ctx.lineWidth= 25;
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(150,100,50,(7*Math.PI)/4,Math.PI/4, true);
+ctx.strokeStyle= "#D12325";
+ctx.lineWidth= 25;
+ctx.stroke();
+ctx.lineWidth= 4;
+ctx.font = "40px Muli";
+ctx.strokeText("ubs",150,110);
+ctx.fillStyle= "D12325";
+</script>
+    </body>
+</html>

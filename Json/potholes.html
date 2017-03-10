@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Open 311 request</title>
+        <style>
+            div {color: blue; 
+            border-left: solid;
+            border-bottom: solid;
+            border-color: black;
+            border-radius: 10px;
+            font-family: 'Cinzel'; font-size: 22px;
+                
+            }
+            p, h1 {font-family: helvetica;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+        </style>
+    </head>
+    <body>
+    <h1>AJAX and DOM Manipulation</h1>
+    <p>A script on this page makes a call to the City of Chicago Data Portal to get Food Inspection data for zip 60618 for the 4th quarter of 2016.  The results are logged to the console and are stored as a variable named <strong>inspections</strong>.  You'll modify the script to update the DOM by adding inspections information to the body element.
+    </p>
+    
+    <p>A couple of things that might help:</p>
+    <ul>
+        <li>jQuery <strong>.append()</strong> method (<a href="http://www.w3schools.com/jquery/html_append.asp">http://www.w3schools.com/jquery/html_append.asp</a>)</li>
+        <li>
+            The Food Inspection data set at City of Chicago Data Portal (<a href="https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5">https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5</a>)  
+            Click the <strong>Export</strong> button and expand the <strong>SODA API</strong> panel to see the names of the data elements you'll be able to display.
+        </li>
+    </ul>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        /*
+            This script retrieves pothole request data for zip 60639
+            for the 4th quarter of 2016 from the 
+            City of Chicago Data Portal
+            
+            It stores the returned results in a variable named inspections.
+            
+            This script doesn't update the DOM.
+        
+        
+        */
+        //  variable to hold the returned data
+        var inspections;
+        
+        // base URL to the food inspections data
+        var inspectionsBaseURL = 'https://data.cityofchicago.org/resource/787j-mys9.json';
+        
+        // optional filters we're appending - zip and status
+        var filters = '?zip=60639&status=Open';
+        
+        // full URL
+        var url = inspectionsBaseURL + filters;
+        
+        console.log (url);
+        
+        $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(url)
+                .done (function (data) {
+                    
+                    
+                    console.log(data)
+                    // TODO:  add script to add data to the DOM
+
+                    //loop through the records
+                    $.each (data , 
+                    function (index, value) {
+                        //append content to the body
+                        var html = "<div>" 
+                            + "<h2>"
+                            + value.type_of_service_request
+                            + "</h2>"
+                            + "<p>"
+                            + "Status: "
+                            + value.status
+                            + "<br>"
+                            + "Ward: "
+                            + value.ward
+                            + "<br>"
+                            + value.creation_date
+                            + "</p>"
+                            + "</div>";
+
+                        $("body").append(html);
+                        }
+                    );
+                
+                })
+        );
+                
+        
+    </script>
+    </body>
+</html>

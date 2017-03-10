@@ -1,0 +1,122 @@
+<html>
+    <head><title> About me </title>
+    <style>                      
+        img {
+            border-style: solid; 5px;
+            border-color: green;
+        }
+        body {
+            background-image: url("http://woodhillweb.com/wp-content/uploads/2012/02/impending-tornado_206_600x450.jpg");
+            background-color: #cccccc;
+        }
+        #name { 
+            
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            border-style: solid;
+            border-color: yellow;
+        }
+        #blue {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            border-style: dashed;
+            border-color: red;
+            color: white;
+        }
+        #link {
+            color: white;
+            font-family: "Comic Sans MS", cursive, sans-serif
+        }
+    </style>
+    </head>
+    <body>
+        
+        <p><h1 id="name">York Hernandez</h1></p>
+         <div class="Special">
+            <p> I currently have customized my name at the top to have a solid yellow border and my list of favorites to have a dashed red border. I have also made the font of my favorites list, the link related to that list and my name to the font comic sans. I have changed the color of the font for the link and list to white </p>
+        </div>
+        <img src="http://www.clipartkid.com/images/0/smiley-face-clip-art-dr-odd-uWlQ3w-clipart.jpg" alt="smiley face" Style= "width:300px;height:300px"> 
+        <select>
+            <option value="agree">Agree</option>
+            <option value="disagree">Disagree</option>
+            <option value="neutral">Neutral</option>
+        </select>
+        <form action="demo_form.asp">
+Email: <input type="text" id="email" name="FirstName" value="Example98@cps.edu"><br>
+
+</form>
+
+        <table>
+            <tr>
+                <th>Period</th>
+                <th>Course</th>
+                <th>Teacher</th>
+                <th>Room</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Beginning Male Chorus</td>
+                <td>Carrera</td>
+                <td>402</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Web Dev 1:HTML</td>
+                <td>Hayes</td>
+                <td>124</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Chemistry</td>
+                <td>Roskin</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>German 2</td>
+                <td>Girardi</td>
+                <td>332</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Advanced Algebra with Trig</td>
+                <td>Marino</td>
+                <td>327</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>PE 2</td>
+                <td>Hofman</td>
+                <td>300</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>English 2</td>
+                <td>Mikbel</td>
+                <td>240</td>
+            </tr>
+            </table>
+            <ul id="blue">Favorite Gemstones
+        <li>Blue lace agate</li>
+        <li>Fire opal</li>
+        <li>Nephrite</li>
+        <li>Moonstone</li>
+        <li>Gold topaz</li>
+        </ul>
+    <a href="https://en.wikipedia.org/wiki/List_of_gemstone_species" id="link">List of Gemstone Species</a>
+    <button type="button" id="btnShowEmail"> Show Email Address</button>
+<script>
+    document.getElementById("btnShowEmail").onclick=function(){
+        var txtInputEmail = document.getElementById("email");
+        var strEmail = txtInputEmail.value;   
+        var message = "";
+        if (strEmail === "") {
+            message = "Hey, enter an email address!";
+        }
+        else {
+            message = "The value in the email input box is " + strEmail;
+        }
+        alert(message);  
+    };
+</script>
+    </body>
+    
+</html>

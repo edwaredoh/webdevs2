@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <style>
+            canvas {
+              border:1px solid #d3d3d3;background-color:white;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="project" width="1000" height="1000" style="border:5px solid #ff0000">Your browser does not support the canvas element</canvas>
+        <script>
+            var canvas = document.getElementById("project");
+            
+            var ctx = canvas.getContext("2d");
+            
+            
+            var circleX= 25;
+            var circleSpeed = 4;
+            var direction = 1;
+            
+                        
+            function draw() {
+                
+                ctx.clearRect(0,0,canvas.width,500);
+                
+                ctx.beginPath();
+                ctx.arc(circleX,75,20,0,2*Math.PI);
+                ctx.fillStyle = circleColor;
+                ctx.fill();
+                
+                if (circleX >= (canvas.width + 20)) {
+                    circleX = -20;
+                    
+                }
+                circleX = circleX + (circleSpeed*direction) ;
+                        
+                window.requestAnimationFrame(draw);
+            }
+            window.requestAnimationFrame(draw);
+            
+            var circleX2 = 500
+            var circleY = 700
+            var circleColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
+            
+            ctx.beginPath();
+            ctx.arc(circleX2,circleY,50,0,2*Math.PI);
+            ctx.fill();
+            
+            document.addEventListener('keydown', moveCircle);
+                function moveCircle(e) {
+                    ctx.clearRect(0,500,canvas.width,1000);
+                    
+                     if (e.keyCode == 39) {
+                    circleX2 = circleX2 + 20;
+                    ctx.fillStyle = circleColor;
+                }
+                    if (e.keyCode == 37) {
+                    circleX2 = circleX2 - 20;
+                    ctx.fillStyle = circleColor;
+                }
+                ctx.beginPath();
+                ctx.arc(circleX2,circleY,50,0,2*Math.PI);
+                ctx.fillStyle = circleColor;
+                ctx.fill();
+                
+                
+                }
+                
+
+        </script>
+    </body>
+</html>        

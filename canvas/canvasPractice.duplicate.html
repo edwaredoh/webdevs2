@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <style>
+            canvas {
+              border:1px solid #d3d3d3;background-color:white;
+            }
+            #theone {display: none;}
+        </style>
+    </head>
+    <body>
+        <canvas id="practice" width="1000" height="1000" style="border:5px solid #ff0000">Your browser does not support the canvas element</canvas>
+        <script>
+              //create a reference to the canvas element
+            var canvas = document.getElementById("practice");
+            
+            //create a reference to the drawing object
+            var ctx = canvas.getContext("2d");
+            
+            var circleX = 100;
+            var circleY = 100;
+            
+            ctx.beginPath();
+            ctx.arc(circleX,circleY,20,0,2*Math.PI);
+            ctx.fill();
+            
+            
+            document.addEventListener("keydown", moveCircle );
+            
+            function moveCircle (e) {
+                //console.log(e);
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                
+                if (e.keyCode == 39) {
+                    circleX = circleX + 5;
+                }
+                if (e.keyCode == 37) {
+                    circleX = circleX - 5;
+              
+                if (circleX >= (canvas.width - 20)) {
+                    circleX = circleX - 5;
+                }
+                if (circleX >= (canvas.width + 20)) {
+                    circleX = circleX - 5;
+                }
+
+                ctx.beginPath();
+                ctx.arc(circleX,100,20,0,2*Math.PI);
+                ctx.fill();
+            }
+
+           </script>
+    </body>
+</html>

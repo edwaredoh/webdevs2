@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <style>
+            canvas {
+              border:1px solid #d3d3d3;background-color:white;
+            }
+            #theone {display: none;}
+        </style>
+    </head>
+    <body>
+        <canvas id="practice" width="1000" height="1000" style="border:5px solid #ff0000">Your browser does not support the canvas element</canvas>
+        <script>
+            //create a reference to the canvas element
+            var canvas = document.getElementById("practice");
+            
+            //create a reference to the drawing object
+            var ctx = canvas.getContext("2d");
+            
+            ctx.beginPath();
+            
+            var endPathX;
+            var endPathY;
+            
+            canvas.addEventListener("mouseclick",
+            
+              function (e) {
+                  
+                  //ctx.clearRect(0,0,canvas.width,canvas.height);
+                  
+                //console.log(e);
+                
+                var layerX = event.clientX;     
+                var layerY = event.clientY;
+                
+                // generate a random size for the circle;
+             	var circleSize = Math.floor((Math.random() * 20) + 20);
+             	
+                // generate a random color for the circle
+             	var circleColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
+            	
+            	// generate a random width for the path
+            	var pathWidth = Math.floor((Math.random() * 50) + 1);
+            	
+            	// set the drawing object properties
+            	ctx.strokeStyle = circleColor;
+            	ctx.lineWidth = pathWidth; 
+             	ctx.fillStyle = circleColor;
+             	
+             	 //draw the path at the mouse coords
+             	ctx.beginPath();
+                ctx.moveTo(endPathX,endPathY);
+                ctx.arc(e.layerX, e.layerY, circleSize, 0, 2 * Math.PI);
+                ctx.lineTo(e.layerX,e.layerY);
+                ctx.stroke();
+                
+                
+                /* save the current mouse coords to use 
+                   as the starting point of the next segment
+                */
+                endPathX = e.layerX;
+                endPathY = e.layerY;
+              }
+            
+            );
+        </script>
+    </body>
+</html>
