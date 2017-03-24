@@ -7,13 +7,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Amy's Schedule App</title>  
     <link rel="manifest" href="manifest.json">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <link rel="apple-touch-icon" href="yeah.jpg">
   </head>
-  <style>
+    <style>
       .screen {
           display:none;
+      }
+      p {
+      margin-left: auto;
       }
       .demo-card-event.mdl-card {
   width: 256px;
@@ -42,8 +47,8 @@
 .demo-card-event > .mdl-card__actions > .mdl-button {
   color: #fff;
 }
-.img {
-  
+#lib {
+  margin: auto;
 }
   </style>
   <body>
@@ -52,7 +57,7 @@
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Title</span>
+          <span class="mdl-layout-title">Amy's schedule app</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
@@ -104,9 +109,25 @@
             </div>
         <div id= "hours" class="screen page-content"><h1>Screen 2</h1>
         <h1>Library Hours</h1>
-        <img src= "library_option_1.jpg">
+        <img id= "lib" src= "library_option_1.jpg">
+        <p>Mondays: Opens at 10 AM closes at 6 PM</p>
+        <br>
+        <p>Tuedays: Opens at 12 PM closes at 8 PM </p>
+        <br>
+        <p>Wednesdays: Opens at 10 AM closes at 6 PM</p>
+        <br>
+        <p>Thursdays: Opens at 12 PM closes at 8 PM</p>
+        <br>
+        <p>Fridays: Opens at 9 AM closes at 5 PM</p>
+        <br>
+        <p>Saturdays: Opens at 9 AM closes at 5 PM</p>
+        <br>
+        <p>Sundays: Closed</p>
+        <br>
         </div>
-        <div id= "dates" class="screen page-content"><h1>Screen 3</h1></div>
+        <div id= "dates" class="screen page-content"><h1>Screen 3</h1>
+        
+        </div>
       </main>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
