@@ -1,0 +1,163 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta charset="utf-8">
+    <title>Bus tracker</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Weather PWA">
+    <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+</head>
+
+<body>
+    <!-- Simple header with fixed tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                mdl-layout--fixed-tabs">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Bus tracker</span>
+            </div>
+            <!-- Tabs -->
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
+                <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
+                <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">No other tabs!</span>
+        </div>
+        <main class="mdl-layout__content">
+            <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+                <div class="page-content">
+                    <h1>Track a bus!</h1>
+
+                    <select id="control">
+                        
+                    </select>
+                    <select id="direction">
+                        
+                    </select>
+                    <select id="stops">
+                        
+                    </select>
+                    <!--<button type="button" id="btn1">See the buses!</button>
+                    <div id=49Northbound class="schedule"></div>
+                    <div id=49Southbound class="schedule"></div>
+                    <div id=152Eastbound class="schedule"></div>
+                    <div id=152Westbound class="schedule"></div> -->
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                    <script>
+                        $(function() {
+
+                            /*for adding routes and stops*/
+                            var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+                            /* page 27 0f the datapoint pdf*/
+                            var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions?key=62ia5Gg8QemxjhRbTZvnKcyrR&rt=49,152&stpid=8417,8195,12526&format=json";
+
+
+                            $.ajax({
+                                    url: apiPassThruUrl,
+                                    dataType: "json",
+                                    method: 'GET',
+                                    data: {
+                                        "apiEndpoint": apiEndpoint,
+                                        "key": "62ia5Gg8QemxjhRbTZvnKcyrR",
+                                        "format": "json"
+                                    }
+                                })
+                                .done(function(data) {
+                                    console.log(data);
+                                    
+                                        $.each(data["bustime-response"]["prd"], function(i, v) {
+                                            var option = $("<option>");
+                                            option.attr("value", v.rt);
+                                            option.text(v.rt + " - " + v.stpnm + "-" + v.rtdir);
+                                            $("#control").append(option)
+
+                                            /*$("#routeIds").on("change", function(i, v) {
+                                                var routeId = $("#route").val
+
+                                            });*/
+
+                                        });
+
+                                });
+                        });
+                    </script>
+
+                    <!--<script>
+                        $(function() {
+
+                            var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+                            /* page 27 0f the datapoint pdf*/
+                            var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions?key=62ia5Gg8QemxjhRbTZvnKcyrR&rt=49,152&stpid=8417,8195,12526&format=json";
+
+                            $("#btn1").on("click", function() {
+
+                                $(".schedule").html("");
+                                $.ajax({
+                                    url: apiPassThruUrl,
+                                    dataType: "json",
+                                    method: 'GET',
+                                    data: {
+                                        "apiEndpoint": apiEndpoint,
+                                        "key": "62ia5Gg8QemxjhRbTZvnKcyrR",
+                                        "format": "json"
+                                    }
+                                })
+
+                                .done(function(data) {
+                                    console.log(data);
+
+                                    $("#49Northbound").prepend("<h1 id=bsrts>Bus Routes</h1>");
+
+                                    $.each(data["bustime-response"]["prd"], function(i, v) {
+                                        $("#" + v.rt + v.rtdir).append("<p>" +
+                                            "Route #" +
+                                            v.rt +
+                                            ", " +
+                                            v.stpnm +
+                                            ", " +
+                                            v.rtdir +
+                                            "<br>" +
+                                            "Predicted minutes until arrival: " +
+                                            v.prdctdn +
+                                            "</p>");
+
+                                    });
+
+                                });
+
+                            });
+
+                        });
+                    </script> -->
+                </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+                <div class="page-content">
+                    <button type="button" id="btn1">See the buses!</button>
+                </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+                <div class="page-content">
+                    <button type="button" id="btn1">See the buses!</button>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
