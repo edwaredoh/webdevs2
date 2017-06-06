@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> </title>
+    <style>
+        canvas {
+            border: black 5px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="1100px" height="900px"></canvas>
+    <script>
+        var mainCanvas = document.getElementById("myCanvas");
+        var mainContext = mainCanvas.getContext("2d");
+       
+        var deltaX = 0;
+        var deltaY = 0;
+       
+       window.addEventListener("keydown", keysPressed, false);
+       window.addEventListener("keyup", keysReleased, false);
+       
+       var keys = [];
+       
+       function keysPressed(e) {
+            keys[e.keyCode] = true 
+                
+                //left key pressed            
+                if (keys[37]) {
+                    deltaX -= 2;
+                }
+                //right key pressed
+                if (keys[39]) {
+                    deltaX += 2;
+                }
+                   //up key pressed
+                if (keys[38]) {
+                    deltaY -= 2;
+                }
+                   //down key pressed
+                if (keys[40]) {
+                    deltaY += 2;
+                }
+           
+           e.preventDefault();
+           
+           drawMonstr();
+       }
+       
+       function keysReleased(e) {
+           keys[e.keycode] = false;
+       }
+       
+       function drawMonstr() { 
+        
+        mainContext. clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        
+        var monstr = new Image();
+        monstr.src = "monstr.png";
+        
+        monstr.addEventListener("load", loadImage, false);
+ 
+        function loadImage(e) {
+            mainContext.drawImage (monstr, 250 + deltaX, 250 + deltaY, 100, 100);
+        }   
+                                }
+        
+        mainContext.font = "bold 96px Helvetica, Arial, sans-serif";
+        mainContext.textAlign = "center";
+        mainContext.fillText("Blue", 100, 200);
+        mainContext.strokeText("Blue", 100, 100);
+    </script>
+</body>
+
+</html>
